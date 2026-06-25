@@ -1,0 +1,25 @@
+#include<iostream>
+#include<string>
+#include<cctype>
+using namespace std;
+int main()
+{
+    string a,b;
+    cin>>a>>b;
+    for(int i=0;i<a.length();i++)
+    {
+        a[i]=tolower(a[i]);
+    }
+    for(int j=0;j<a.length();j++)
+    {
+        b[j]=tolower(b[j]);
+    }
+    
+    if(a==b)
+    cout<<"0"<<endl;
+    else if(a<b)
+    cout<<"-1"<<endl;
+    else if(a>b)
+    cout<<"1"<<endl;
+    return 0;
+}
