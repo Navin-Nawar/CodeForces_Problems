@@ -30,6 +30,7 @@ void solve() {
     sort(all(v2));
 
     f(i,0,n){
+        
         ans[v1[i].second]=v2[i];
     }
     for(auto x:ans){
