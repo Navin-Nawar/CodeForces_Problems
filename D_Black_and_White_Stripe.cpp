@@ -14,28 +14,39 @@ using namespace std;
 #define fr(i,a,b) for(int i = a; i >= b; i--)
 
 void solve() {
-    int n;cin>>n;
+    int n,m;cin>>n>>m;
     string s;cin>>s;
-    string p;
-    p=s;
-    sort(all(p));
-    if(p==s){cout<<"NO"<<endl;
-        return;
-    }
-    else{
-        cout<<"YES"<<endl;
-        for(int i=0;i<s.size()-1;i++){
-            if(s[i]>s[i+1]){
-                cout<<i+1<<" "<<i+2<<endl;
-                break;
-            }
-        }
+    int pref[n]={0};
+    if(s[0]=='W')
+    pref[0]=1;
+    else pref[0]=0;
+    
+    for(int i=1;i<n;i++){
+        int cnt=0;
+        if(s[i]=='W')cnt++;
+        pref[i]=pref[i-1]+cnt;
+
     }
 
+    int mn=INT_MAX;
+    int lenman=0;
+
+    for(int i=m-1;i<n;i++){
+        if(i==m-1)lenman=pref[i];
+        else
+        lenman=pref[i]-pref[i-m];
+        mn=min(mn,lenman);
+    }
+   
+    cout<<mn<<endl;
+    
 }
 
 int main() {
     fastio;
-   solve();
+    int t;
+    cin >> t;
+    while(t--)
+     solve();
     return 0;
 }
