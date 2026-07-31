@@ -13,36 +13,35 @@ using namespace std;
 #define f(i,a,b) for(int i = a; i < b; i++)
 #define fr(i,a,b) for(int i = a; i >= b; i--)
 
-const int x=2e5+7;
-int s[x];
- 
-
-
-int precompute(int p){
-    int s=0;
-    while(p){
-        s+=p%10;
-        p=p/10;
+int precompute(int p) {
+    int sum = 0;
+    while (p) {
+        sum += p % 10;
+        p /= 10;
     }
-
-    return s;
-
+    return sum;
 }
-
-
 
 int main() {
     fastio;
-   
-    s[0]={0};
-    for(int i=0;i<x;i++){
-        s[i+1]=s[i]+precompute(i);
+
+    const int N = 2e5 + 7;
+
+    vector<int> pref(N + 1, 0);
+
+    // pref[i] = digitSum(1) + digitSum(2) + ... + digitSum(i)
+    for (int i = 1; i <= N; i++) {
+        pref[i] = pref[i - 1] + precompute(i);
     }
+
     int t;
     cin >> t;
-    while(t--){
-        int n;cin>>n;
-        print(s[n+1]);
-    } 
+
+    while (t--) {
+        int n;
+        cin >> n;
+        print(pref[n]);
+    }
+
     return 0;
 }
